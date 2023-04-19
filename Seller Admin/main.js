@@ -44,19 +44,31 @@ function showProducts(productObj){
     // document. getElementById('category'). value='';
 
     const parentNode = document.getElementById(productObj.category);
-    const childHTML = `<li id = ${productObj.id}> ${productObj.price} -> ${productObj.product} <button onclick=deleteProduct('${productObj.id}')>DELETE</button> </li>`;
+    console.log(parentNode);
+    // const childHTML = `<li id = ${productObj.id}> ${productObj.price} -> ${productObj.product} <button onclick=deleteProduct('${productObj.id}')>DELETE</button> </li>`;
+    const childNode = document.createElement("li");
+    childNode.id = `${productObj.id}`;
+    childNode.textContent = `${productObj.price} -> ${productObj.product} `;
 
-    parentNode.innerHTML = parentNode.innerHTML + childHTML ;
+    const btn = document.createElement("button");
+    btn.onclick = deleteProduct;
+    btn.textContent = `DELETE`;
+
+    childNode.appendChild(btn);
+
+
+    parentNode.appendChild(childNode);
 
 }
 
-function deleteProduct(id){
+function deleteProduct(){
+    const id = this.parentNode.id;
     console.log(id);
     axios.delete(`http://localhost:1100/user/delete-product/${id}`)
     .then((response) => {
-        console.log(response);
-        
-        removeFromScreen(response);
+        console.log("promise returned");
+        this.parentNode.remove();
+        // removeFromScreen(response.data.allUsers[0].id);
     })
     .catch(err => {
         console.log(err);
@@ -65,10 +77,5 @@ function deleteProduct(id){
 }
 
 function removeFromScreen(userId){
-    const parentNode = document.getElementById('category').value;
-    const childNodeToBeDeleted = document.getElementById(userId);
-
-    if(childNodeToBeDeleted){
-        parentNode.removeChild(childNodeToBeDeleted)
-    }
+    document.getElementById(userId).remove();
 }
