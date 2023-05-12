@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/views/chatapp.css">
+    <title>ChatApp page</title>
+</head>
+<body>
+    <div class="container">
+        <div class="logo"><h2>ChatApp</h2>
+            <a href="/views/login.html">LogOut</a>
+        </div>
+        <div class="sidebar">
+            <div class="person-group">
+              <h2>Persons</h2>
+              <ul id="persons">
+              </ul>
+            </div>
+            <div class="person-group">
+              <h2>Groups</h2>
+              <ul id="groups">
+              </ul>
+              <div class="chat-input">
+                <input type="text" placeholder="Name your group...." id="groupname">
+                <button onclick="createGroup()">Send</button>
+              </div>
+              <div class="chat-input">
+                <input type="text" placeholder="Enter User Email" id="usermail">
+                <input type="text" placeholder="Enter Admin Status" id="adminstatus">
+                <button onclick="addMember()">Send</button>
+              </div>
+            </div>
+          </div>
+          <div class="chat">
+            <div class="chat-box">
+
+            </div>
+            <div class="chat-input">
+              <input type="text" placeholder="Type your message..." id="message">
+              <button onclick="sendMessage()">Send</button>
+            </div>
+          </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+
+    <script src="/views/chatapp.js"></script>
+</body>
+</html>
